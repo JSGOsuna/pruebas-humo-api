@@ -1,0 +1,63 @@
+{
+  "info": {
+    "_postman_id": "d18ea5cf-68f5-4670-8edb-dc567bccf181",
+    "name": "Pruebas de Humo – API Inicio",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52889629",
+    "_collection_link": "https://go.postman.co/collection/52889629-d18ea5cf-68f5-4670-8edb-dc567bccf181?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "New Request",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Verificar que la respuesta sea 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Verificar que el tiempo de respuesta sea menor a 1000ms\", function () {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Verificar que el body no esté vacío\", function(){\r",
+              "    pm.expect(pm.response.text()).to.not.be.empty;\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Verificar Content-Type\", function(){\r",
+              "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"text/html\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Verificar tamaño de respuesta\", function(){\r",
+              "    pm.expect(pm.response.text().length).to.be.above(0);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://buggy.justtestit.org/make/ckl2phsabijs71623vk0\n",
+          "protocol": "https",
+          "host": [
+            "buggy",
+            "justtestit",
+            "org"
+          ],
+          "path": [
+            "make",
+            "ckl2phsabijs71623vk0\n"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
