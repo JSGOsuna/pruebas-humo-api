@@ -17,8 +17,19 @@ jobs:
         with:
           node-version: '18'
         
-      - name: Instalar Newman
-        run: npm install -g newman
-  
-      - name: Ejecutar pruebas de humo
-        run: newman run pruebas_humo_api.json
+      - name: Instalar Newman y reporter HTML
+        run: |
+          npm install -g newman
+          npm install -g newman-reporter-html
+
+      - name: Ejecutar pruebas de humo con reporte HTML
+        run: |
+          newman run pruebas_humo_api.json \
+          -r html \
+          --reporter-html-export reporte.html
+
+      - name: Subir reporte como artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: reporte-pruebas-humo
+          path: reporte.html
